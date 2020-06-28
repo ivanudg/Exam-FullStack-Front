@@ -1,0 +1,73 @@
+<h1 class="mt-4">{{ titulo }}</h1>
+<hr/>
+
+<form ngNativeValidate [formGroup]="forma" (ngSubmit)="enviar()">
+    <!-- <form> -->
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="outline" class="largoInput">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" formControlName="nombre" placeholder="Ingresar el nombre del empleado">
+                <mat-hint>*Campo Obligatorio</mat-hint>
+                <mat-error *ngIf="forma.get('nombre').hasError('required') && (nombre.dirty || nombre.touched)">
+                    Ingrese el nombre
+                </mat-error>
+                <mat-error *ngIf="forma.get('nombre').hasError('minlength') && (nombre.dirty || nombre.touched)">
+                    El nombre debe contener mínimo 2 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field appearance="outline" class="largoInput">
+                <mat-label>Apellido Paterno</mat-label>
+                <input matInput type="text" formControlName="apellidoPat" placeholder="Ingresar el apellido paterno del empleado">
+                <mat-hint>*Campo Obligatorio</mat-hint>
+                <mat-error *ngIf="forma.get('apellidoPat').hasError('required') && (nombre.dirty || nombre.touched)">
+                    Ingrese el apellido paterno
+                </mat-error>
+                <mat-error *ngIf="forma.get('apellidoPat').hasError('minlength') && (nombre.dirty || nombre.touched)">
+                    El Apellido debe contener mínimo 2 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="outline" class="largoInput">
+                <mat-label>Apellido Materno</mat-label>
+                <input matInput type="text" formControlName="apellidoMat" placeholder="Ingresar el apellido materno del empleado">
+                <mat-hint>*Campo Obligatorio</mat-hint>
+                <mat-error *ngIf="forma.get('apellidoMat').hasError('required') && (nombre.dirty || nombre.touched)">
+                    Ingrese el apellido materno
+                </mat-error>
+                <mat-error *ngIf="forma.get('apellidoMat').hasError('minlength') && (nombre.dirty || nombre.touched)">
+                    El Apellido debe contener mínimo 2 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field appearance="outline" class="largoInput">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="Ingresar el email del empleado">
+                <mat-hint>*Campo Obligatorio</mat-hint>
+                <mat-error *ngIf="forma.get('email').hasError('required') && (nombre.dirty || nombre.touched)">
+                    Ingrese el correo
+                </mat-error>
+                <mat-error *ngIf="forma.get('email').hasError('email') && (nombre.dirty || nombre.touched)">
+                    El formato es incorrecto
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-block btn-success" [disabled]="!forma.valid">Guardar</button>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-block btn-danger" [routerLink]="['empleados']">Cancelar</button>
+        </div>
+    </div>
+</form>
