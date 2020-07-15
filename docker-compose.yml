@@ -1,0 +1,7 @@
+version: '3'
+services: 
+    angular-app:
+        container_name: angular-docker
+        build: .
+        ports: 
+            - "2020:80"
