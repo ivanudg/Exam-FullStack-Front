@@ -1,7 +1,11 @@
-FROM httpd:alpine
+FROM node:alpine as builder
+WORKDIR '/app'
+RUN npm install -g @angular/cli@8.0.1
+COPY package.json .
+RUN npm install
+COPY . .
+RUN ng build
 
-WORKDIR '/usr/local/apache2/htdocs/'
-
+FROM nginx
+COPY --from=builder /app/dist/UsersManagement /usr/share/nginx/html
 EXPOSE 80
-
-COPY dist/UsersManagement .
